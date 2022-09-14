@@ -3,16 +3,15 @@ _base_ = ['default_runtime.py', 'schedules/imagenet_bs2048_rsb.py', 'datasets/im
 # model settings
 model = dict(
     type='ImageClassifier',
-    pretrained='pretrain/resnet50_3rdparty-mill_in21k_20220331-faac000b.pth',
     backbone=dict(
-        type='MMSegResNetV1c',
+        type='MMSegResNetV1d',
         depth=50,
         num_stages=4,
         out_indices=(3,),
         style='pytorch',
         dilations=(1, 1, 2, 4),
         strides=(1, 2, 1, 1),
-        contract_dilation=True),
+        contract_dilation=False),
     neck=dict(type='GlobalAveragePooling'),
     head=dict(
         type='LinearClsHead',
